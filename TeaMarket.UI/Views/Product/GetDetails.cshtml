@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "GetDetails";
+}
+@model TeaMarket.BLL.ViewModels.GetProductDetailsViewModel
+
+    <div class="wrapper d-flex p-5 text-center">
+        <div class="row">
+            <div class="col">
+                <h3>@Model.Name</h3>
+                <p>@Model.Description</p>
+            </div>
+            <div class="col">
+                <h3>Cost per box: <span id="cost-label">@Model.Cost$</span> </h3>
+                <p>In stock: @Model.Quantity</p>
+            </div>
+            <div class="col">
+                @using (Html.BeginForm("MakeOrder", "Order", FormMethod.Post))
+                {
+                    @Html.HiddenFor(s => s.Id)
+                    @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", step = "1", max = $"{Model.Quantity}" }) 
+                    @Html.HiddenFor(s => s.Cost)
+                    <input type="submit" class="btn btn-success"  value="Buy" />
+                }
+            </div>
+        </div>
+    </div>

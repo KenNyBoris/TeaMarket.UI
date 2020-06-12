@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Tea market";
+}
+@model TeaMarket.BLL.ViewModels.GetPaginatedProductsViewModel
+    <div class="main-wrapper">
+        <div class="product-list">
+            <div class="text-center">
+                <div class="m-5">
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tea name
+                                </th>
+                                <th>
+                                    Cost
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td>@product.Cost$</td>
+                                    <td>@Html.ActionLink("Details", "GetDetails", "Product", new { id = product.Id },null)</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                    @Html.ActionLink("Next", "Index", "Product", new { size = Model.Size, startFrom = Model.Size + 1 }, null)
+                   
+                </div>
+            </div>
+        </div>
+    </div>

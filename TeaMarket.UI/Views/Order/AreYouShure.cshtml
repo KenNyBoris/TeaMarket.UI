@@ -1,0 +1,12 @@
+﻿@model Guid
+@{
+    ViewBag.Title = "Are You Shure";
+}
+<div class="text-center">
+    @using(Html.BeginForm("ConfirmPayment","Order", FormMethod.Post)){ 
+           <h2>Are you shure ?</h2>
+    @Html.Hidden("orderId",Model.ToString())
+        <input type="submit" value="Yes!" class="btn btn-succes" />
+    }
+ 
+</div>
